@@ -1,6 +1,6 @@
 
 run_lasso <- function(gene_coCRE_signal, gene_expression, ltype= "l1se", alphaVal = 1, scale.predictors = TRUE, family = "gaussian", nfold = nfold){
-    require(glmnet)
+   # require(glmnet)
     predictors = x = as.matrix(gene_coCRE_signal)
     response = y = as.matrix(gene_expression)
     lasso.glmnet.outpt = lasso.glmnet(predictors, response, alphaVal = alphaVal, family, scale.predictors = scale.predictors, nfold =  nfold)

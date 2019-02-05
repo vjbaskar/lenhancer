@@ -1,12 +1,11 @@
 Package: lenhancer
 Type: Package
-Title: What the Package Does (Title Case)
+Title: LASSO based enhancer identification
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Author: Vijay
+Maintainer: The package maintainer <vjbaskar@gmail.com>
+Description: For a given set of cell types the package identifies enhancers on a gene-by-gene basis, using chromatin activity data (such as histone marks, accessibility marks), along with TF binding data and expression data
+License: GNU General Public License
 Encoding: UTF-8
 LazyData: true
 Imports: glmnet, igraph, covTest, arules, selectiveInference

@@ -1,6 +1,6 @@
 get_coCRE <- function(gene_reg_tfbs, gene_reg_signal, gene_meta, min_tfb_events = 2, coCRE_corr_cutoff = 0.5, singleton_cutoff = 20000){
-    require(igraph)
-    require(arules)
+    # require(igraph)
+    # require(arules)
 
     # Confirming binary input
     gene_reg_tfbs [ gene_reg_tfbs > 0 ] <- 1

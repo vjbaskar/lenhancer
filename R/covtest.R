@@ -1,8 +1,8 @@
 
 getPValue <- function(predictors, response){
 
-    require(covTest)
-    require(selectiveInference)
+    # require(covTest)
+    # require(selectiveInference)
 
     # Predictors and response
     x = scale(predictors,T,T)
