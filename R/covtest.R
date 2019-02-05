@@ -21,11 +21,9 @@ getPValue <- function(predictors, response){
     # Estimate sigma - sd of noise. sqrt(sum((y-yhat)^2) / (n-df-1))
     ## x is scaled. Therefore not using standardisation or normalisation
     sigma = estimateSigma(x, y, standardize = FALSE)$sigmahat
-    sigma
     # covtest using an estimated sigma
     a=lars(x,y, type = "lasso", normalize = FALSE)
     ctest = covTest(a,x,y, sigma.est = sigma)
-    # Extract p-values
     res = ctest$results
     pvals = res[,3]
     delV = res[,2]
