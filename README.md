@@ -51,10 +51,11 @@ gene_preds = findEnhancer(gene, expression, regulation_signal, regulation_tfbs, 
 
 ## Input data types
 
-*expression* 
+### expression
 
-expression data consists of gene expression values (such as *log<sub>2</sub>(FPKM)*). gene as rows, cell types as columns.
+*expression* data consists of gene expression values (such as *log<sub>2</sub>(FPKM)*). gene as rows, cell types as columns.
 ```R
+> data(expression)
 > head(expression)
              ESC      CESC       MES      CMES        CM        CP        HB        HE        HP
 Sergef  1.137991  1.044118  1.895715  2.217683  1.666260  0.646738  2.008090  1.244708  1.802633
@@ -70,4 +71,47 @@ Lnx2    2.8721921
 Ppia    0.8198570
 Gkn1   -9.9657843
 Lrat   -5.6209541
+```
+
+### regions
+*region_gene_mapping* data frame consists of all the regulatory regions that are mapped to the genes in *expression*.
+There are many software such as [ChIPseeker](http://bioconductor.org/packages/release/bioc/html/ChIPseeker.html), [ChIPpeakAnno](http://bioconductor.org/packages/release/bioc/html/ChIPpeakAnno.html) and [HOMER](http://homer.ucsd.edu/homer/index.html) that can map regions to genes. If you map peaks to genes, and the peak lies within the gene you can mark their *distance* as any value less than *singleton_cutoff* (default, 20Kb)
+
+```R
+> data("region_gene_mapping")
+> head(region_gene_mapping)
+       chr    start      end         peak  gene distance
+7786 chr16 92514276 92515568 merge.105629 Runx1    85898
+7792 chr16 92515907 92516390 merge.105630 Runx1    85076
+7797 chr16 92522863 92525592 merge.105632 Runx1    75874
+7815 chr16 92572528 92574113 merge.105643 Runx1    27353
+7820 chr16 92579265 92579735 merge.105644 Runx1    21731
+7824 chr16 92605464 92606424 merge.105650 Runx1     3000
+```
+*NOTE*: Please keep the colnames the same. *findEnhancer* function looks for `c("peak", "gene", "distance")` columns specifically in its codes and is case-senstive.
+
+
+### regulation signal
+
+*regulation_signal* data consists of regions as rows and chromatin activity signal (such as *log<sub>2</sub>(FPKM)*) for each cell type as columns. 
+
+*NOTE* that the colnames for *expression* and *regulation_signal* are the same.
+
+```R
+> data("regulation_signal")
+> head(regulation_signal)
+                    ESC       CESC       MES      CMES        CM        CP        HB         HE
+merge.105629 2.56820271  2.5806279 0.9168354 1.5256741 0.4129932 0.5330959 1.6784691 -0.1319497
+merge.105630 2.44097491  1.6429856 0.5797611 2.1639965 1.5515023 1.7488139 3.1067132  0.7631582
+merge.105632 1.30810596  0.7371804 0.9214790 1.5322401 1.1576157 1.1091539 1.2070316  0.7889895
+merge.105643 0.02400262 -0.3086307 0.6754163 0.2950902 1.3850548 0.7898872 0.7038305  3.2788514
+merge.105644 1.24260338  1.2721741 1.9149712 2.2436335 2.2543188 2.6906041 3.7203829  2.8612361
+merge.105650 2.54822747  3.0395300 3.8857761 3.0925726 2.1348828 1.5124602 4.0995385  2.2658194
+                    HP        MAC
+merge.105629 0.9904566  0.8144609
+merge.105630 1.6498018  2.3616716
+merge.105632 1.2059928  4.0246107
+merge.105643 1.5171622  5.4947875
+merge.105644 3.3901037  0.6582151
+merge.105650 1.3444846 -3.3652031
 ```
