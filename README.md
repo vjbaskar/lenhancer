@@ -48,3 +48,26 @@ data("regulation_tfbs")
 data("region_gene_mapping")
 gene_preds = findEnhancer(gene, expression, regulation_signal, regulation_tfbs, region_gene_mapping, min_tfb_events = 2, coCRE_corr_cutoff = 0.5, singleton_cutoff = 20000, alphaVal = 1, scale.predictors = TRUE, family = "gaussian", nfoldxval = 10)
 ```
+
+## Input data types
+
+*expression* 
+
+expression data consists of gene expression values (such as *log<sub>2</sub>(FPKM)*). gene as rows, cell types as columns.
+```R
+> head(expression)
+             ESC      CESC       MES      CMES        CM        CP        HB        HE        HP
+Sergef  1.137991  1.044118  1.895715  2.217683  1.666260  0.646738  2.008090  1.244708  1.802633
+Bcl7a   2.206694  2.550776  2.844359  3.496080  3.116237  3.478903  2.129927  1.403524  2.419382
+Lnx2    2.053856  2.500270  1.863102  1.802951  1.930653  1.332876  2.289595  2.377188  2.195265
+Ppia   10.074714 10.342072  9.826837 10.160430  9.599557  9.509954  1.916361  1.533936  2.086379
+Gkn1   -9.965784 -9.965784 -9.965784 -9.965784 -9.965784 -9.965784 -9.965784 -9.965784 -9.965784
+Lrat   -6.122783 -6.090128 -6.229214 -7.160255 -6.348240 -7.412639 -8.432611 -5.641031 -6.950677
+              MAC
+Sergef  2.6563687
+Bcl7a   0.2551161
+Lnx2    2.8721921
+Ppia    0.8198570
+Gkn1   -9.9657843
+Lrat   -5.6209541
+```
