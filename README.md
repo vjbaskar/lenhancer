@@ -89,13 +89,14 @@ There are many software such as [ChIPseeker](http://bioconductor.org/packages/re
 7824 chr16 92605464 92606424 merge.105650 Runx1     3000
 ```
 *NOTE*: Please keep the colnames the same. *findEnhancer* function looks for `c("peak", "gene", "distance")` columns specifically in its codes and is case-senstive.
-
+*NOTE* that the region_gene_mapping$gene and row.names(expression) must overlap.
 
 ### regulation signal
 
 *regulation_signal* data consists of regions as rows and chromatin activity signal (such as *log<sub>2</sub>(FPKM)*) for each cell type as columns. 
 
 *NOTE* that the colnames for *expression* and *regulation_signal* are the same.
+*NOTE* that the rownames for *regulation_signal* and region_gene_mapping$peak should be same.
 
 ```R
 > data("regulation_signal")
@@ -114,4 +115,44 @@ merge.105632 1.2059928  4.0246107
 merge.105643 1.5171622  5.4947875
 merge.105644 3.3901037  0.6582151
 merge.105650 1.3444846 -3.3652031
+```
+
+### TF binding data
+
+*regulation_tfbs* data consists of TF binding data as 0 = non-binding and 1 = binding. The rownames are regions and colnames are TF ChIP-seq data.
+In theory, you can use any ChIP-seq data for computing overlap, but the most meaningful is to use the TFBS data for the cell types you are studying.
+
+*NOTE* that `rownames(regulation_tfbs)` is same as `rownames(regulation_signal)` 
+
+```R
+> data("regulation_tfbs")
+> head(regulation_tfbs)
+             ESC_ESRRB ESC_NANOG ESC_OCT4 ESC_SOX2 MES_CEBPB MES_ELK4 MES_OCT4 HB_CEBPB HB_GATA2
+merge.105677         0         0        0        0         0        0        0        0        0
+merge.105727         0         0        0        0         0        0        0        0        0
+merge.105746         0         0        0        0         0        0        0        0        0
+merge.105753         0         0        0        0         0        0        0        0        0
+merge.105769         0         0        0        0         0        0        0        0        0
+merge.105629         0         0        0        0         0        0        0        0        0
+             HB_LMO2 HB_TAL1 HB_TEAD4 HE_CEBPB HE_FLI1 HE_LMO2 HE_MEIS1 HE_TAL1 HP_CEBPB HP_FLI1
+merge.105677       1       1        0        0       0       0        0       0        0       0
+merge.105727       0       0        0        0       0       0        0       0        0       0
+merge.105746       1       1        1        0       0       0        0       0        0       0
+merge.105753       0       0        0        0       0       0        0       0        0       0
+merge.105769       0       0        0        0       0       0        0       0        0       0
+merge.105629       0       0        0        0       0       0        0       0        0       0
+             HP_GATA1 HP_GATA2 HP_GFI1B HP_GFI1 HP_LMO2 HP_PU1 HP_RUNX1 HP_TAL1 MAC_CEBPB MAC_FLI1
+merge.105677        0        0        0       0       0      0        0       0         0        0
+merge.105727        0        0        0       0       0      0        0       0         1        0
+merge.105746        0        0        0       0       0      0        0       0         0        0
+merge.105753        0        0        0       0       0      0        0       0         1        0
+merge.105769        0        0        0       0       0      0        0       0         1        0
+merge.105629        0        0        0       0       0      0        0       0         0        0
+             MAC_LMO2 MAC_PU1 MAC_RUNX1 MAC_TAL1
+merge.105677        0       1         0        0
+merge.105727        0       1         0        0
+merge.105746        0       0         0        0
+merge.105753        0       1         0        0
+merge.105769        0       1         0        0
+merge.105629        0       0         0        0
 ```
