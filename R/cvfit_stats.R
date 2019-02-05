@@ -4,12 +4,8 @@ getShortListed <- function(cvfit, lambda, predictors){
     shortlisted = coef(cvfit,s=lambda)
     colnames(shortlisted) <- "lassoval"
     shortlisted = as.data.frame(as.matrix(shortlisted))
-    shortlisted
-
     reqCols = rownames(shortlisted)
     reqCols = reqCols[which(!grepl("Intercept",reqCols))]
-    reqCols
-
     shortlisted = shortlisted[reqCols,]
     names(shortlisted) = reqCols
     shortlisted = shortlisted[shortlisted != 0]
@@ -22,10 +18,8 @@ getShortListed <- function(cvfit, lambda, predictors){
 
 getPredictedCor <- function(cvfit.obj, xmat, y, lambda = "lambda.1se"){
     lambdaVal = cvfit.obj[lambda]
-    #    message("LambdaVal = ",lambdaVal )
     y.pred = predict.cv.glmnet(cvfit.obj,xmat , s=lambda)
     pcoef = cor.test(y,y.pred, method="spearman")
-    temp = list(x = xmat, y.pred = y.pred, pcoef=pcoef, cvfit = cvfit.obj)
-    return(temp)
-
+    sendList = list(x = xmat, y.pred = y.pred, pcoef=pcoef, cvfit = cvfit.obj)
+    return(sendList)
 }

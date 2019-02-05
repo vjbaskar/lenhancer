@@ -18,8 +18,6 @@ getPValue <- function(predictors, response){
     }
     x = as.matrix(x)
     y = as.matrix(response)
-    dim(x)
-    dim(y)
     # Estimate sigma - sd of noise. sqrt(sum((y-yhat)^2) / (n-df-1))
     ## x is scaled. Therefore not using standardisation or normalisation
     sigma = estimateSigma(x, y, standardize = FALSE)$sigmahat
