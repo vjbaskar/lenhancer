@@ -1,6 +1,6 @@
-# lenhancer
-Enhancer identification using [LASSO](https://en.wikipedia.org/wiki/Lasso_(statistics)). 
+# lenhancer: [LASSO](https://en.wikipedia.org/wiki/Lasso_(statistics)) based Enhancer identification 
 
+## Introduction
 Combining a novel strategy to identify communities of related control elements with a penalized regression approach, we developed individual gene-by-gene models to identify the potential control elements predictive of the expression of the gene. 
 
 The package requires the following data:
@@ -14,5 +14,12 @@ For each gene, the method consists of the following steps:
 * Using correlation of *T* and *S* between these *m* regions, a community clustering algorithm is used to group the CREs into clusters called coCREs.
 * singleton CREs within 10Kb and coCREs are then considered as predictors,  and the gene's expression across cell types as response variable.
 * Penalised regression (L1 regularisation, LASSO) along with cross-validation is used to identify enhancers for the gene.
-* [covariance testing](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4285373/) is used to compute the p-value. 
+* [covariance testing](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4285373/) is used to compute the p-value.
 
+## Installation
+
+```R
+install.packages("devtools")
+devtools::install_github("hadley/devtools")
+devtools::install_github(c("vjbaskar/covTest", "vjbaskar/lenhancer"))
+```

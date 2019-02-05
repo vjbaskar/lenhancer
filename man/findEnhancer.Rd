@@ -6,8 +6,8 @@
 \usage{
 findEnhancer(gene, expression, regulation_signal, regulation_tfbs,
   region_gene_mapping, min_tfb_events = 2, coCRE_corr_cutoff = 0.5,
-  singleton_cutoff = 20000, alphaVal = 1, scale.predictors = TRUE,
-  family = "gaussian", nfoldxval = 10, ...)
+  coCRE_cutoff = 1e+05, singleton_cutoff = 20000, alphaVal = 1,
+  scale.predictors = TRUE, family = "gaussian", nfoldxval = 10, ...)
 }
 \arguments{
 \item{gene}{gene of interest eg. Runx1 (case sensitive)}
@@ -23,6 +23,8 @@ findEnhancer(gene, expression, regulation_signal, regulation_tfbs,
 \item{min_tfb_events}{the minimum number of TFB events per site to be consider for community CRE calculation. default = 2}
 
 \item{coCRE_corr_cutoff}{the cutoff above which two putative enhancer regions (CREs) are considered to be correlated. Default = 0.5}
+
+\item{coCRE_cutoff}{the cutoff beyond which the regions will not be considered for coCRE calculation. Default = 10000 (100kB)}
 
 \item{singleton_cutoff}{the cutoff for considering singleton CRE. Default = 20000 (20Kb)}
 

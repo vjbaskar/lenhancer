@@ -7,6 +7,7 @@
 #' @param region_gene_mapping data.frame with region to gene mapping. Please refer to data(region_gene_mapping) for the format.
 #' @param min_tfb_events the minimum number of TFB events per site to be consider for community CRE calculation. default = 2
 #' @param coCRE_corr_cutoff the cutoff above which two putative enhancer regions (CREs) are considered to be correlated. Default = 0.5
+#' @param coCRE_cutoff the cutoff beyond which the regions will not be considered for coCRE calculation. Default = 10000 (100kB)
 #' @param singleton_cutoff the cutoff for considering singleton CRE. Default = 20000 (20Kb)
 #' @param alphaVal alpha value for glmnet. Read glmnet manual
 #' @param scale.predictors (TRUE/FALSE). Default = TRUE
@@ -15,7 +16,7 @@
 #' @return list of regions and p-values
 #' @export
 
-findEnhancer <- function(gene, expression, regulation_signal, regulation_tfbs, region_gene_mapping, min_tfb_events = 2, coCRE_corr_cutoff = 0.5, singleton_cutoff = 20000, alphaVal = 1, scale.predictors = TRUE, family = "gaussian", nfoldxval = 10, ...){
+findEnhancer <- function(gene, expression, regulation_signal, regulation_tfbs, region_gene_mapping, min_tfb_events = 2, coCRE_corr_cutoff = 0.5, coCRE_cutoff = 100000, singleton_cutoff = 20000, alphaVal = 1, scale.predictors = TRUE, family = "gaussian", nfoldxval = 10, ...){
     proceed_fwd = 1
     cat("Performing basic checks\n")
     celltypes <- colnames(expression)
