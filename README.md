@@ -23,3 +23,28 @@ install.packages("devtools")
 devtools::install_github("hadley/devtools")
 devtools::install_github(c("vjbaskar/covTest", "vjbaskar/lenhancer"))
 ```
+
+## Example run
+
+The below example run is for gene "Runx1". Please not the format of the four input data below and keep them the same for your input as well. 
+
+
+```R
+#### Input variables
+gene = "Runx1"
+coCRE_cutoff = 100000 # 100Kb upper limit for considering regions as being mapped to the gene
+singleton_cutoff = 20000 # 20Kb upper limit for considering regions that are not coCREs in the model
+coCRE_corr_cutoff = 0.5 # The higher the value the tighter the community of CREs
+min_tfb_events = 2 # lower limit for considering a region for walktrap community clustering
+alphaVal=1 # 1 is the lasso penalty, and 0 the ridge penalty.
+scale.predictors=TRUE # scale predictors True or False
+family = "gaussian" # "gaussian","binomial","poisson","multinomial","cox","mgaussian"
+nfold = 10 # nfold cross-validation: >= 3 and can be as large as the sample (# of cell types) size (leave-one-out CV) 
+
+
+data("expression")
+data("regulation_signal")
+data("regulation_tfbs")
+data("region_gene_mapping")
+gene_preds = findEnhancer(gene, expression, regulation_signal, regulation_tfbs, region_gene_mapping, min_tfb_events = 2, coCRE_corr_cutoff = 0.5, singleton_cutoff = 20000, alphaVal = 1, scale.predictors = TRUE, family = "gaussian", nfoldxval = 10)
+```
