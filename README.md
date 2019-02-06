@@ -31,6 +31,7 @@ The below example run is for gene "Runx1". Please not the format of the four inp
 
 ```R
 #### Input variables
+library(lenhancer)
 gene = "Runx1"
 coCRE_cutoff = 100000 # 100Kb upper limit for considering regions as being mapped to the gene
 singleton_cutoff = 20000 # 20Kb upper limit for considering regions that are not coCREs in the model
