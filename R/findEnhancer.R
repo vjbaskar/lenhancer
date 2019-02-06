@@ -20,6 +20,7 @@
 #' @import arules
 #' @import covTest
 #' @import selectiveInference
+#' @import lars
 
 findEnhancer <- function(gene, expression, regulation_signal, regulation_tfbs, region_gene_mapping, min_tfb_events = 2, coCRE_corr_cutoff = 0.5, coCRE_cutoff = 100000, singleton_cutoff = 20000, alphaVal = 1, scale.predictors = TRUE, family = "gaussian", nfoldxval = 10, ...){
     proceed_fwd = 1

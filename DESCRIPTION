@@ -8,6 +8,6 @@ Description: For a given set of cell types the package identifies enhancers on a
 License: GNU General Public License
 Encoding: UTF-8
 LazyData: true
-Imports: glmnet, igraph, covTest, arules, selectiveInference
+Imports: glmnet, igraph, covTest, arules, selectiveInference, lars
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
