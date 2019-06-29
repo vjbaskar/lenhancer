@@ -157,3 +157,17 @@ merge.105753        0       1         0        0
 merge.105769        0       1         0        0
 merge.105629        0       0         0        0
 ```
+## Output
+The output gene_pred is a list and the main output are lambda_min = the predictors (regions) obtained when thresholding for lambda at min(MSE), lambda_1se = same as lambda_min but with lambda at min(MSE) + 1stdev and more conservative and p = p value
+```
+> summary(gene_preds$Runx1)
+           Length Class      Mode   
+expression 10     -none-     numeric
+meta        6     data.frame list   
+reg_signal 10     data.frame list   
+reg_tfbs   33     data.frame list   
+lambda_1se  2     data.frame list   
+lambda_min  6     data.frame list   
+p           1     -none-     numeric
+```
+
