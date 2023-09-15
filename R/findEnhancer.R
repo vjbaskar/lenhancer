@@ -33,7 +33,7 @@ findEnhancer <- function(gene, expression, regulation_signal, regulation_tfbs, r
         return(NULL)
     }
     cat("Getting gene expression","\n")
-    gene_expression <- t(expression [ "Runx1", ])
+    gene_expression <- t(expression [ gene, ])
 
     cat("Getting regions within mapping distance of gene","\n")
     gene_meta <- getPeaks(region_gene_mapping, gene, coCRE_cutoff)
