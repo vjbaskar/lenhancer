@@ -18,7 +18,7 @@ getShortListed <- function(cvfit, lambda, predictors){
 
 getPredictedCor <- function(cvfit.obj, xmat, y, lambda = "lambda.1se"){
     lambdaVal = cvfit.obj[lambda]
-    y.pred = predict.cv.glmnet(cvfit.obj,xmat , s=lambda)
+    y.pred = predict(cvfit.obj,xmat , s=lambda)
     pcoef = cor.test(y,y.pred, method="spearman")
     sendList = list(x = xmat, y.pred = y.pred, pcoef=pcoef, cvfit = cvfit.obj)
     return(sendList)
